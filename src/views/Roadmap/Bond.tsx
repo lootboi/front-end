@@ -21,7 +21,7 @@ import { BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN, DECIMALS_18 } from '../../grap
 import { Alert } from '@material-ui/lab';
 import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
 import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
-import HomeImage from '../../assets/img/background.jpg';
+import HomeImage from '../../assets/img/background.png';
 import { Grid , Box, Container } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 

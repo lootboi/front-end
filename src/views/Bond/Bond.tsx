@@ -20,7 +20,7 @@ import {getDisplayBalance} from '../../utils/formatBalance';
 import { BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN, DECIMALS_18 } from '../../grape-finance/constants';
 import { Alert } from '@material-ui/lab';
 
-import HomeImage from '../../assets/img/background.jpg';
+import HomeImage from '../../assets/img/background.png';
 import { Grid , Box } from '@material-ui/core';
 const BackgroundImage = createGlobalStyle`
   body {

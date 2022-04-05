@@ -2,7 +2,7 @@ import {Deployments} from './deployments';
 import {ChainId} from '@traderjoe-xyz/sdk';
 
 export type Configuration = {
-  chainId: 43114;
+  chainId: 1313161555;
   networkName: string;
   ftmscanUrl: string;
   defaultProvider: string;

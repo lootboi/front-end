@@ -28,9 +28,9 @@ const ZapModal: React.FC<ZapProps> = ({onConfirm, onDismiss, LPtokenName = '', d
   const grapeFinance = useGrapeFinance();
   //const {balance} = useWallet();
 
-  const grapeBalance = useTokenBalance(grapeFinance.GRAPE);
+  const grapeBalance = useTokenBalance(grapeFinance.YEET);
   const wineBalance = useTokenBalance(grapeFinance.WINE);
-  const mimBalance = useTokenBalance(grapeFinance.MIM);
+  const mimBalance = useTokenBalance(grapeFinance.MTRI);
 
   let [showZapData, setShowZapData] = useState(false);
   //const avaxDisplayBalance = (Number(balance) / 1e18).toFixed(4).toString();

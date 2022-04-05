@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'superstar';
-  src: local('superstar'), url('./fonts/superstar.ttf') format('truetype');
-}
-
 body,
 html,
 h1,
@@ -10,7 +5,7 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-family: 'MONOSPACE', sans-serif;
+  font-family: 'Changa', sans-serif;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
@@ -29,7 +24,7 @@ body {
 /* .MuiTypography-body1,
 .MuiPaper-root, */
 h2 {
-  color: #930993 !important;
+  color: #FFCC66 !important;
   font-size: 2.5em;
 }
 
@@ -52,7 +47,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'superstar', 'monospace';
+  font-family: 'Changa', 'sans-serif';
   text-transform: uppercase;
   color: #fff;
 }
@@ -182,7 +177,7 @@ code {
 }
 
 .grape {
-  background-image: url('/grape.png');
+  background-image: url('/DSILogo.png');
   top: -20px;
 }
 

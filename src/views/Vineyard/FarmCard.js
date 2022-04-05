@@ -87,7 +87,7 @@ const FarmCard = ({bank}) => {
               Trade
             </Button>
           ) : null}
-          <Button className="shinyButtonSecondary" component={Link} to={`/vineyard/${bank.contract}`}>
+          <Button className="shinyButtonSecondary" component={Link} to={`/gravitywells/${bank.contract}`}>
             Stake
           </Button>
         </CardActions>

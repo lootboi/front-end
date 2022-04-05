@@ -44,10 +44,11 @@ export class GrapeFinance {
 
   GRAPEBTCB_LP: Contract;
   GRAPE: ERC20;
+  YEET: ERC20;
   WINE: ERC20;
   GBOND: ERC20;
-  WAVAX: ERC20;
-  MIM: ERC20;
+  WBNB: ERC20;
+  MTRI: ERC20;
   WAMP: ERC20;
   VOLT: ERC20;
 
@@ -75,10 +76,10 @@ export class GrapeFinance {
       }
       this.externalTokens[symbol] = new ERC20(address, provider, symbol, decimal);
     }
-    this.GRAPE = new ERC20(deployments.Grape.address, provider, 'GRAPE');
+    this.GRAPE = new ERC20(deployments.YEET.address, provider, 'YEET');
     this.WINE = new ERC20(deployments.Wine.address, provider, 'WINE');
     this.GBOND = new ERC20(deployments.BBond.address, provider, 'GBOND');
-    this.MIM = this.externalTokens['MIM'];
+    this.MTRI = this.externalTokens['MTRI'];
     this.WAMP = this.externalTokens['WAMP'];
     this.VOLT = this.externalTokens['VOLT'];
 
@@ -255,7 +256,7 @@ export class GrapeFinance {
     const mimAmountBN =
       lpToken.symbol === 'GRAPE-WINE-LP'
         ? await this.WINE.balanceOf(lpToken.address)
-        : await this.MIM.balanceOf(lpToken.address);
+        : await this.MTRI.balanceOf(lpToken.address);
 
     const mimAmount = getDisplayBalance(mimAmountBN, 18);
     const tokenAmountInOneLP = Number(tokenAmount) / Number(lpTokenSupply);
@@ -286,7 +287,7 @@ export class GrapeFinance {
 
     const tokenAmount = getDisplayBalance(tokenAmountBN, 18);
 
-    const btcAmountBN = await this.MIM.balanceOf(lpToken.address);
+    const btcAmountBN = await this.MTRI.balanceOf(lpToken.address);
 
     const btcAmount = getDisplayBalance(btcAmountBN, 18);
     const tokenAmountInOneLP = Number(tokenAmount) / Number(lpTokenSupply);
@@ -379,12 +380,12 @@ export class GrapeFinance {
 
   async getGrapePriceInLastTWAP(): Promise<BigNumber> {
     const {Treasury} = this.contracts;
-    return Treasury.getGrapeUpdatedPrice();
+    return Treasury.getDibsUpdatedPrice();
   }
 
   // async getGrapePegTWAP(): Promise<any> {
   //   const { Treasury } = this.contracts;
-  //   const updatedPrice = Treasury.getGrapeUpdatedPrice();
+  //   const updatedPrice = Treasury.getDibsUpdatedPrice();
   //   const updatedPrice2 = updatedPrice * 10000;
   //   return updatedPrice2;
   // }
@@ -497,22 +498,22 @@ export class GrapeFinance {
     poolContract: Contract,
     depositTokenName: string,
   ) {
-    if (earnTokenName === 'GRAPE') {
+    if (earnTokenName === 'YEET') {
       if (!contractName.endsWith('1')) {
-        const rewardPerSecond = await poolContract.grapePerSecond();
+        const rewardPerSecond = await poolContract.dibsPerSecond();
 
-        if (depositTokenName === 'WAVAX') {
+        if (depositTokenName === 'WBNB') {
           return rewardPerSecond.mul(720).div(2400).div(24);
-        } else if (depositTokenName === 'MIM') {
+        } else if (depositTokenName === 'MTRI') {
           return rewardPerSecond.mul(720).div(2400).div(24);
         }
         return rewardPerSecond.div(12);
       }
 
-      if (depositTokenName === 'WAVAX') {
+      if (depositTokenName === 'WBNB') {
         const rewardPerSecond = await poolContract.epochGrapePerSecond(0);
         return rewardPerSecond.div(100).mul(2);
-      } else if (depositTokenName === 'MIM') {
+      } else if (depositTokenName === 'MTRI') {
         const rewardPerSecond = await poolContract.epochGrapePerSecond(0);
         return rewardPerSecond.div(100).mul(2);
       }
@@ -536,7 +537,7 @@ export class GrapeFinance {
       return rewardPerSecond.mul(7000).div(41000);
     } else  if (depositTokenName.startsWith('GRAPE-WINE')) {
       return rewardPerSecond.mul(1500).div(41000);
-    } else  if (depositTokenName === 'GRAPE') {
+    } else  if (depositTokenName === 'YEET') {
       return rewardPerSecond.mul(9500).div(41000);
     } else if (depositTokenName === 'WAMP') {
       return rewardPerSecond.mul(2000).div(41000);
@@ -557,7 +558,7 @@ export class GrapeFinance {
     let tokenPrice;
     const priceOfOneFtmInDollars = await this.getWBNBPriceFromPancakeswap();
 
-    if (tokenName === 'WAVAX') {
+    if (tokenName === 'WBNB') {
       tokenPrice = priceOfOneFtmInDollars;
     } else {
       if (tokenName === 'GRAPE-MIM-LP') {
@@ -698,8 +699,8 @@ export class GrapeFinance {
   ): Promise<BigNumber> {
     const pool = this.contracts[poolName];
     try {
-      if (earnTokenName === 'GRAPE') {
-        return await pool.pendingGRAPE(poolId, account);
+      if (earnTokenName === 'YEET') {
+        return await pool.pendingDIBS(poolId, account);
       } else if (earnTokenName === 'WINE') {
         return await pool.pendingShare(poolId, account);
       } else if (earnTokenName === 'HSHARE') {
@@ -809,9 +810,9 @@ export class GrapeFinance {
     const ready = await this.provider.ready;
     if (!ready) return;
     //const { chainId } = this.config;
-    const {MIM} = this.config.externalTokens;
+    const {MTRI} = this.config.externalTokens;
 
-    const wmim = new Token(43114, MIM[0], MIM[1], 'MIM');
+    const wmim = new Token(43114, MTRI[0], MTRI[1], 'MTRI');
 
     const token = new Token(43114, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
 
@@ -830,9 +831,9 @@ export class GrapeFinance {
     const ready = await this.provider.ready;
     if (!ready) return;
     //const { chainId } = this.config;
-    const {WAVAX} = this.config.externalTokens;
+    const {WBNB} = this.config.externalTokens;
     const {USDC} = this.config.externalTokens;
-    const wbnb = new TokenPangolin(43114, WAVAX[0], WAVAX[1], 'WAVAX');
+    const wbnb = new TokenPangolin(43114, WBNB[0], WBNB[1], 'WBNB');
     const usdc = new TokenPangolin(43114, USDC[0], USDC[1], 'USDC');
     const token = new TokenPangolin(43114, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
 
@@ -897,11 +898,11 @@ export class GrapeFinance {
   async getWBNBPriceFromPancakeswap(): Promise<string> {
     const ready = await this.provider.ready;
     if (!ready) return;
-    const {WAVAX, MIM} = this.externalTokens;
+    const {WBNB, MIM} = this.externalTokens;
     try {
-      const fusdt_wmim_lp_pair = this.externalTokens['MIM-WAVAX-LP'];
-      let mim_amount_BN = await WAVAX.balanceOf(fusdt_wmim_lp_pair.address);
-      let mim_amount = Number(getFullDisplayBalance(mim_amount_BN, WAVAX.decimal));
+      const fusdt_wmim_lp_pair = this.externalTokens['MIM-WBNB-LP'];
+      let mim_amount_BN = await WBNB.balanceOf(fusdt_wmim_lp_pair.address);
+      let mim_amount = Number(getFullDisplayBalance(mim_amount_BN, WBNB.decimal));
       let fusdt_amount_BN = await MIM.balanceOf(fusdt_wmim_lp_pair.address);
       let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, MIM.decimal));
 
@@ -1164,7 +1165,7 @@ export class GrapeFinance {
       if (assetName === 'GRAPE') {
         asset = this.GRAPE;
         assetUrl =
-          'https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/grape.png';
+          'https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/DSILogo.png';
       } else if (assetName === 'WINE') {
         asset = this.WINE;
         assetUrl =
@@ -1320,7 +1321,7 @@ export class GrapeFinance {
         break;
       }
       case MIM_TICKER: {
-        token = this.MIM;
+        token = this.MTRI;
         break;
       }
     }
@@ -1429,7 +1430,7 @@ export class GrapeFinance {
         break;
       }
       case MIM_TICKER: {
-        token = this.MIM;
+        token = this.MTRI;
         break;
       }
     }

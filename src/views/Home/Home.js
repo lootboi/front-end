@@ -12,8 +12,8 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usebShareStats from '../../hooks/useWineStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import {Grape as grapeTesting, Wine as bShareTesting} from '../../grape-finance/deployments/deployments.testing.json';
-import {Grape as grapeProd, Wine as bShareProd} from '../../grape-finance/deployments/deployments.mainnet.json';
+import {YEET as grapeTesting, Wine as bShareTesting} from '../../grape-finance/deployments/deployments.testing.json';
+import {YEET as grapeProd, Wine as bShareProd} from '../../grape-finance/deployments/deployments.mainnet.json';
 import {roundAndFormatNumber} from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 import {Box, Button, Card, CardContent, Grid, Paper} from '@material-ui/core';
@@ -23,11 +23,9 @@ import useBank from '../../hooks/useBank';
 import {makeStyles} from '@material-ui/core/styles';
 import useGrapeFinance from '../../hooks/useGrapeFinance';
 import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
-import kyc from '../../assets/img/kyc.jpg';
 import wamp from '../../assets/img/WAMP.png';
-import GrapeImage from '../../assets/img/grape.png';
-import audit from '../../assets/img/audit1.jpg';
-import HomeImage from '../../assets/img/background.jpg';
+import DeepImage from '../../assets/img/DSILogo.png'; ///change 
+import HomeImage from '../../assets/img/background.png';  //change
 import useStatsForPool from '../../hooks/useStatsForPool';
 import useTotalStakedOnBoardroom from '../../hooks/useTotalStakedOnBoardroom';
 import {getDisplayBalance} from '../../utils/formatBalance';
@@ -83,7 +81,7 @@ const Home = () => {
     'https://traderjoexyz.com/trade?inputCurrency=0x130966628846bfd36ff31a822705796e8cb8c18d&outputCurrency=0xc55036b5348cfb45a932481744645985010d3a44';
   const wineChart = 'https://dexscreener.com/avalanche/0x00cb5b42684da62909665d8151ff80d1567722c3';
   const grapeChart = 'https://dexscreener.com/avalanche/0xb382247667fe8ca5327ca1fa4835ae77a9907bc8';
-  const wampStaking = '/vineyard/WampStaking';
+  const wampStaking = '/gravitywells/WampStaking';
 
   const grapeLPStats = useMemo(() => (grapemimLpStats ? grapemimLpStats : null), [grapemimLpStats]);
   const wineLPStats = useMemo(() => (bSharemimLpStats ? bSharemimLpStats : null), [bSharemimLpStats]);
@@ -171,19 +169,19 @@ const Home = () => {
           sm={4}
           style={{display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden'}}
         >
-          <img src={GrapeImage} style={{maxHeight: '240px'}} />
+          <img src={DeepImage} style={{maxHeight: '240px'}} />
         </Grid>
         {/* Explanation text */}
         <Grid item xs={12} sm={8}>
           <Paper>
-            <Box p={4} style={{ textAlign: 'center'}}>
-              <h2>Earn Daily Yields at Grape Finance</h2>
+            <Box bgcolor='#33666675' p={4} style={{ textAlign: 'center'}}>
+              <h2>Earn Galactic Sized Yields at Deep Space Investments</h2>
 
               <p style={{fontSize: '17px'}}>
-                <b>We're pegged to MIM helping to reduce your volatility during a market downturn</b>
+                <b>We believe in the Aurora Ecosystem and wanted to show our support by pegging our token to $TRI</b>
               </p>
               <p style={{fontSize: '17px'}}>
-                GRAPE is an algorithmic stable coin designed to maintain a 1:1 peg to MIM.
+                $GLXY is an algorithmic stable coin designed to maintain a 1:4 peg to TRI.
                 {/*Stake your LPs in the Vineyard to earn WINE rewards. Then stake your earned WINE in the
                 Winery to earn more GRAPE!*/}
               </p>
@@ -229,13 +227,6 @@ const Home = () => {
         {/* TVL */}
         <Grid item xs={12} sm={4}>
           <div style={{width: '80%', margin: '0 auto', paddingBottom: '40px', paddingTop: '40px'}}>
-            <a href="https://twitter.com/0xGuard/status/1480457336082907137" target="_blank">
-              <img alt="0xGuard KYC" style={{width: '45%'}} src={kyc} />
-            </a>
-
-            <a href="https://grapefinance.app/audit.pdf" target="_blank">
-              <img alt="0xGuard Audit" style={{width: '45%', marginLeft: '20px'}} src={audit} />
-            </a>
           </div>
 
           <Card>
@@ -251,24 +242,12 @@ const Home = () => {
           <Card style={{height: '100%'}}>
             <CardContent align="center" style={{marginTop: '2%'}}>
               <Box p={4} style={{textAlign: 'center', paddingTop: '0px'}}>
-                <h2 style={{fontSize: '32px'}}>Have WAMP to stake?</h2>
-                <p style={{marginTop: '0'}}>Boost your WAMP yields by staking for WINE then pledge for more AMP</p>
-
-                <img src={wamp} width={'55px'} height={'55px'}></img>
-                <Button
-                  target="_blank"
-                  href={wampStaking}
-                  className={'shinyButton ' + classes.button}
-                  style={{marginLeft: '10px', marginTop: '-45px'}}
-                >
-                  WAMP Staking
-                </Button>
               </Box>
               {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-              <Button href="/vineyard" className="shinyButton" style={{margin: '10px'}}>
+              <Button href="/gravitywells" className="shinyButton" style={{margin: '10px'}}>
                 Vineyard
               </Button>
-              <Button href="/winery" className="shinyButton" style={{margin: '10px'}}>
+              <Button href="/constellations" className="shinyButton" style={{margin: '10px'}}>
                 Winery
               </Button>  
               <Button
@@ -433,7 +412,7 @@ const Home = () => {
                 {/* <Button onClick={onPresentWineZap} className="shinyButtonSecondary">
                   Zap In
             </Button>*/}
-                <Button style={{}} className="shinyButtonSecondary" href={'/vineyard/GrapeMimLPWineRewardPool'}>
+                <Button style={{}} className="shinyButtonSecondary" href={'/gravitywells/GrapeMimLPWineRewardPool'}>
                   Go To Pool
                 </Button>
               </Box>
@@ -467,7 +446,7 @@ const Home = () => {
                 {/* <Button onClick={onPresentWineZap} className="shinyButtonSecondary">
                   Zap In
             </Button>*/}
-                <Button style={{}} className="shinyButtonSecondary" href={'/vineyard/WineMimLPWineRewardPool'}>
+                <Button style={{}} className="shinyButtonSecondary" href={'/gravitywells/WineMimLPWineRewardPool'}>
                   Go To Pool
                 </Button>
               </Box>
@@ -500,7 +479,7 @@ const Home = () => {
                 {/* <Button onClick={onPresentWineZap} className="shinyButtonSecondary">
                   Zap In
             </Button>*/}
-                <Button style={{}} className="shinyButtonSecondary" href={'/vineyard/GrapeWineLPWineRewardPool'}>
+                <Button style={{}} className="shinyButtonSecondary" href={'/gravitywells/GrapeWineLPWineRewardPool'}>
                   Go To Pool
                 </Button>
               </Box>

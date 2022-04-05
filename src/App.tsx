@@ -52,13 +52,13 @@ const App: React.FC = () => {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/vineyard">
+            <Route path="/gravitywells">
               <Vineyard />
             </Route>
-            <Route path="/winery">
+            <Route path="/constellations">
               <Winery />
             </Route>
-            <Route path="/bond">
+            <Route path="/rocket-repair">
               <Bond />
             </Route>
             <Route path="/launchpad">

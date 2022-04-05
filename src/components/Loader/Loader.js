@@ -10,10 +10,10 @@ const Loader = () => {
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)',
-        color: 'white',
+        color: '#336666',
       }}
     >
-      <Typography>Collecting Grapes</Typography>
+      <Typography>Initializing Blastoff Sequence...</Typography>
     </div>
   );
 };

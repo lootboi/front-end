@@ -5446,7 +5446,7 @@
       },
       {
         "inputs": [],
-        "name": "getGrapeUpdatedPrice",
+        "name": "getDibsUpdatedPrice",
         "outputs": [
           {
             "internalType": "uint256",

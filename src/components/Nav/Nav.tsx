@@ -26,7 +26,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AccountButton from './AccountButton';
 
-import grapeLogo from '../../assets/img/logo1.png';
+import LOGO from '../../assets/img/navlogo.png';
 import {roundAndFormatNumber} from '../../0x';
 import TokenSymbol from '../TokenSymbol';
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     color: '#322f32',
-    'background-color': 'rgba(255,255,255,0.0) !important',
+    'background-color': 'rgba(51, 102, 102) !important',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '10px',
     marginBottom: '3rem',
@@ -120,7 +120,7 @@ const Nav = () => {
             <Typography variant="h6" color="inherit" noWrap style={{flexGrow: '0'}} className={classes.toolbarTitle}>
               {/* <a className={ classes.brandLink } href="/">Grape Money</a> */}
               <Link to="/" color="inherit" className={classes.brandLink}>
-                <img alt="Grape Finance" src={grapeLogo} height="60px" />
+                <img alt="DSI" src={LOGO} height="60px" />
               </Link>
             </Typography>
             <Box style={{paddingLeft: '15px', paddingTop: '10px', fontSize: '1rem', flexGrow: '1'}}>
@@ -128,36 +128,15 @@ const Nav = () => {
                 Home
               </Link>
               
-              <Link to="/vineyard" className={'navLink ' + classes.link}>
-                Vineyard
+              <Link to="/gravitywells" className={'navLink ' + classes.link}>
+                Gravity Wells
               </Link>
-              <Link to="/winery" className={'navLink ' + classes.link}>
-                Winery
+              <Link to="/constellations" className={'navLink ' + classes.link}>
+                Constellations
               </Link>
-              <Link to="/bond" className={'navLink ' + classes.link}>
-                Bonds
+              <Link to="/rocket-repair" className={'navLink ' + classes.link}>
+                Rocket Repair
               </Link>
-              <Link to="/strategies" className={'navLink ' + classes.link}>
-                Strategy
-              </Link>
-              <Link to="/raffle" className={'navLink ' + classes.link}>
-                Raffle
-              </Link>
-              <Link to="/launchpad" className={'navLink ' + classes.link}>
-                Launchpad
-              </Link>
-              <Link to="/roadmap" className={'navLink ' + classes.link}>
-                Roadmap
-              </Link>
-              <a href="https://app.beefy.finance/#/avax" className={'navLink ' + classes.link} rel="noopener" target="_blank">
-                Beefy
-              </a>
-              <a href="https://yieldwolf.finance/avalanche" className={'navLink ' + classes.link} rel="noopener" target="_blank">
-                Yield Wolf
-              </a>
-              <a href="https://snapshot.org/#/grapefinance.eth" className={'navLink ' + classes.link} rel="noopener" target="_blank">
-                Voting
-              </a>
               <a href="https://grapefinance.gitbook.io/grape-finance-docs/" className={'navLink ' + classes.link} rel="noopener" target="_blank">
                 Docs
               </a>
@@ -199,7 +178,7 @@ const Nav = () => {
 
             <img
               alt="grape.money"
-              src={grapeLogo}
+              src={LOGO}
               style={{height: '40px', marginTop: '-10px', marginLeft: '10px', marginRight: '15px'}}
             />
             <AccountButton text="Connect" />
@@ -230,22 +209,9 @@ const Nav = () => {
                   <AccountButton text="Connect" />
                 </ListItem>
                 <ListItemLink primary="Home" to="/" />
-                <ListItemLink primary="Vineyard" to="/vineyard" />
-                <ListItemLink primary="Winery" to="/winery" />
-                <ListItemLink primary="Bond" to="/bond" />
-                <ListItemLink primary="Strategy" to="/strategies" />
-                <ListItemLink primary="Raffle" to="/raffle" />
-                <ListItemLink primary="Launchpad" to="/launchpad" />
-                <ListItemLink primary="Roadmap" to="/roadmap" />
-                <ListItem button component="a" href="https://app.beefy.finance/#/avax">
-                  <ListItemText>Beefy</ListItemText>
-                  </ListItem>
-                <ListItem button component="a" href="https://yieldwolf.finance/avalanche">
-                  <ListItemText>Yield Wolf</ListItemText>
-                  </ListItem> 
-                  <ListItem button component="a" href="https://snapshot.org/#/grapefinance.eth">
-                  <ListItemText>Voting</ListItemText>
-                  </ListItem>
+                <ListItemLink primary="Gravity Wells" to="/gravitywells" />
+                <ListItemLink primary="Constellations" to="/constellations" />
+                <ListItemLink primary="Rocket Repair" to="/rocket-repair" />
                   
                   <ListItem button component="a" href="https://grapefinance.gitbook.io/grape-finance-docs/">
                   <ListItemText>Docs</ListItemText>

@@ -14,7 +14,7 @@ import {createGlobalStyle} from 'styled-components';
 
 import useBanks from '../../hooks/useBanks';
 import LaunchCountdown from '../../components/LaunchCountdown';
-import HomeImage from '../../assets/img/background.jpg';
+import HomeImage from '../../assets/img/background.png';
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) repeat !important;
@@ -36,7 +36,7 @@ const Farm = () => {
           <BackgroundImage />
           {!!account ? (
             <Container maxWidth="lg">
-              <h2 style={{ fontSize: '80px', textAlign:'center' }}>Vineyard</h2>             
+              <h2 style={{ fontSize: '80px', textAlign:'center' }}>Gravity Wells</h2>             
               
               <Box mt={5}>
               
@@ -60,13 +60,8 @@ const Farm = () => {
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{marginTop: '100px', color: '#fff'}}>
-                    Grape Reward Farms (Finished)
+                    YEET Rewards have begun
                   </Typography>
-                  <Alert variant="filled" severity="warning">             
-                     
-                      GRAPE rewards have finished please unstake from these pools.
-                  
-                  </Alert>
                   <Grid container spacing={3} style={{marginTop: '20px', display: 'flex', alignItems: 'center'}}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 1)
@@ -81,11 +76,11 @@ const Farm = () => {
                 <Grid hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{marginTop: '20px', color: '#fff'}}>
-                    Genesis Pools (Finished)
+                    Genesis Pools
                   </Typography>
-                  <Alert variant="filled" severity="warning">
+                  {/* <Alert variant="filled" severity="warning">
                     Please remove funds from genesis farms below.
-                  </Alert>
+                  </Alert> */}
                   {/*<Alert variant="filled" severity="warning">
                     Genesis pools have ended. Please claim all rewards and remove funds from Genesis pools.
                       </Alert>*/}
