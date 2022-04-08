@@ -1,6 +1,6 @@
 export const GRAPE_TICKER = 'GRAPE';
 export const WINE_TICKER = 'WINE';
-export const GBOND_TICKER = 'GBOND';
+export const GBOND_TICKER = 'YBOND';
 export const MIM_TICKER = 'MIM';
 
 // Protip: this is TraderJoe Router. The reason why it's called SPOOKY_ROUTER_ADDR is because it was originally SpookySwap.

@@ -41,14 +41,14 @@ const Bond: React.FC = () => {
 
   const bondsPurchasable = useBondsPurchasable();
 
-  const bondBalance = useTokenBalance(grapeFinance?.GBOND);
+  const bondBalance = useTokenBalance(grapeFinance?.YBOND);
   //const scalingFactor = useMemo(() => (cashPrice ? Number(cashPrice) : null), [cashPrice]);
 
   const handleBuyBonds = useCallback(
     async (amount: string) => {
       const tx = await grapeFinance.buyBonds(amount);
       addTransaction(tx, {
-        summary: `Buy ${Number(amount).toFixed(2)} GBOND with ${amount} GRAPE`,
+        summary: `Buy ${Number(amount).toFixed(2)} YBOND with ${amount} GRAPE`,
       });
     },
     [grapeFinance, addTransaction],
@@ -57,7 +57,7 @@ const Bond: React.FC = () => {
   const handleRedeemBonds = useCallback(
     async (amount: string) => {
       const tx = await grapeFinance.redeemBonds(amount);
-      addTransaction(tx, {summary: `Redeem ${amount} GBOND`});
+      addTransaction(tx, {summary: `Redeem ${amount} YBOND`});
     },
     [grapeFinance, addTransaction],
   );
@@ -97,12 +97,12 @@ const Bond: React.FC = () => {
                   action="Purchase"
                   fromToken={grapeFinance.GRAPE}
                   fromTokenName="GRAPE"
-                  toToken={grapeFinance.GBOND}
-                  toTokenName="GBOND"
+                  toToken={grapeFinance.YBOND}
+                  toTokenName="YBOND"
                   priceDesc={
                     !isBondPurchasable
                       ? 'GRAPE is over peg'
-                      : getDisplayBalance(bondsPurchasable, 18, 4) + ' GBOND available for purchase'
+                      : getDisplayBalance(bondsPurchasable, 18, 4) + ' YBOND available for purchase'
                   }
                   onExchange={handleBuyBonds}
 
@@ -126,11 +126,11 @@ const Bond: React.FC = () => {
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Redeem"
-                  fromToken={grapeFinance.GBOND}
-                  fromTokenName="GBOND"
+                  fromToken={grapeFinance.YBOND}
+                  fromTokenName="YBOND"
                   toToken={grapeFinance.GRAPE}
                   toTokenName="GRAPE"
-                  priceDesc={`${getDisplayBalance(bondBalance)} GBOND Available in wallet`}
+                  priceDesc={`${getDisplayBalance(bondBalance)} YBOND Available in wallet`}
                   onExchange={handleRedeemBonds}
                  
                   disabledDescription={!isBondRedeemable ? `Enabled when 1 GRAPE > $${BOND_REDEEM_PRICE}` : null}

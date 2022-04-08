@@ -11,7 +11,7 @@ const useSwapBBondToWine = () => {
   const handleSwapWine = useCallback(
     (gbondAmount: string) => {
       const gbondAmountBn = parseUnits(gbondAmount, 18);
-      handleTransactionReceipt(grapeFinance.swapBBondToWine(gbondAmountBn), `Swap ${gbondAmount} BBond to Wine`);
+      handleTransactionReceipt(grapeFinance.swapBBondToWine(gbondAmountBn), `Swap ${gbondAmount} YBond to YShare`);
     },
     [grapeFinance, handleTransactionReceipt],
   );

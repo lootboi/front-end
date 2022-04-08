@@ -146,7 +146,7 @@ const Bank: React.FC = () => {
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card className={classes.gridItem}>
               <CardContent style={{textAlign: 'center'}}>
-                <Typography>Pool Wine p/day</Typography>
+                <Typography>Pool YShare p/day</Typography>
                 <Typography>{bank.closedForStaking ? '0.00' : bank.multi} | ${(Number((Number(bSharePriceInDollars)*Number(bank.multi)).toFixed(0))).toLocaleString('en-US')}</Typography>
               </CardContent>
             </Card>

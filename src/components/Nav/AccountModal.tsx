@@ -19,7 +19,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
   const wineBalance = useTokenBalance(grapeFinance.WINE);
   const displayWineBalance = useMemo(() => getDisplayBalance(wineBalance), [wineBalance]);
 
-  const gbondBalance = useTokenBalance(grapeFinance.GBOND);
+  const gbondBalance = useTokenBalance(grapeFinance.YBOND);
   const displayGbondBalance = useMemo(() => getDisplayBalance(gbondBalance), [gbondBalance]);
 
   const matches = useMediaQuery('(min-width:900px)');
@@ -46,10 +46,10 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
         </StyledBalanceWrapper>
 
         <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
-          <TokenSymbol symbol="GBOND" />
+          <TokenSymbol symbol="YBOND" />
           <StyledBalance>
             <StyledValue>{displayGbondBalance}</StyledValue>
-            <Label text="GBOND Available" />
+            <Label text="YBOND Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
       </Balances>

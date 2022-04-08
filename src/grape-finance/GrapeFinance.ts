@@ -45,9 +45,9 @@ export class GrapeFinance {
   GRAPEBTCB_LP: Contract;
   GRAPE: ERC20;
   YEET: ERC20;
-  WINE: ERC20;
-  GBOND: ERC20;
-  WBNB: ERC20;
+  YSHARE: ERC20; //WINE
+  YBOND: ERC20;
+  MNEAR: ERC20; //WBNB
   MTRI: ERC20;
   WAMP: ERC20;
   VOLT: ERC20;
@@ -77,8 +77,8 @@ export class GrapeFinance {
       this.externalTokens[symbol] = new ERC20(address, provider, symbol, decimal);
     }
     this.GRAPE = new ERC20(deployments.YEET.address, provider, 'YEET');
-    this.WINE = new ERC20(deployments.Wine.address, provider, 'WINE');
-    this.GBOND = new ERC20(deployments.BBond.address, provider, 'GBOND');
+    this.YSHARE = new ERC20(deployments.YShare.address, provider, 'YSHARE');
+    this.YBOND = new ERC20(deployments.YBond.address, provider, 'YBOND');
     this.MTRI = this.externalTokens['MTRI'];
     this.WAMP = this.externalTokens['WAMP'];
     this.VOLT = this.externalTokens['VOLT'];
@@ -104,7 +104,7 @@ export class GrapeFinance {
     for (const [name, contract] of Object.entries(this.contracts)) {
       this.contracts[name] = contract.connect(this.signer);
     }
-    const tokens = [this.GRAPE, this.WINE, this.GBOND, ...Object.values(this.externalTokens)];
+    const tokens = [this.GRAPE, this.YSHARE, this.YBOND, ...Object.values(this.externalTokens)];
     for (const token of tokens) {
       token.connect(this.signer);
     }
@@ -245,7 +245,7 @@ export class GrapeFinance {
 
     const lpTokenSupply = getDisplayBalance(lpTokenSupplyBN, 18);
 
-    const token0 = name.startsWith('GRAPE') ? this.GRAPE : this.WINE;
+    const token0 = name.startsWith('GRAPE') ? this.GRAPE : this.YSHARE;
 
     const isGrape = name.startsWith('GRAPE');
 
@@ -254,8 +254,8 @@ export class GrapeFinance {
     const tokenAmount = getDisplayBalance(tokenAmountBN, 18);
 
     const mimAmountBN =
-      lpToken.symbol === 'GRAPE-WINE-LP'
-        ? await this.WINE.balanceOf(lpToken.address)
+      lpToken.symbol === 'GRAPE-YSHARE-LP'
+        ? await this.YSHARE.balanceOf(lpToken.address)
         : await this.MTRI.balanceOf(lpToken.address);
 
     const mimAmount = getDisplayBalance(mimAmountBN, 18);
@@ -280,7 +280,7 @@ export class GrapeFinance {
 
     const lpTokenSupply = getDisplayBalance(lpTokenSupplyBN, 18);
 
-    const token0 = name.startsWith('GRAPE') ? this.GRAPE : this.WINE;
+    const token0 = name.startsWith('GRAPE') ? this.GRAPE : this.YSHARE;
     const isGrape = name.startsWith('GRAPE');
 
     const tokenAmountBN = await token0.balanceOf(lpToken.address);
@@ -308,7 +308,7 @@ export class GrapeFinance {
   }
   /**
    * Use this method to get price for Grape
-   * @returns TokenStat for GBOND
+   * @returns TokenStat for YBOND
    * priceInBNB
    * priceInDollars
    * TotalSupply
@@ -325,7 +325,7 @@ export class GrapeFinance {
     const bondPriceInBNB = (Number(grapeStat.tokenInFtm) * modifier).toFixed(2);
 
     const priceOfBBondInDollars = (Number(grapeStat.priceInDollars) * modifier).toFixed(2);
-    const supply = await this.GBOND.displayedTotalSupply();
+    const supply = await this.YBOND.displayedTotalSupply();
 
     return {
       tokenInFtm: priceOfBBondInDollars,
@@ -336,7 +336,7 @@ export class GrapeFinance {
   }
 
   /**
-   * @returns TokenStat for WINE
+   * @returns TokenStat for YSHARE
    * priceInBNB
    * priceInDollars
    * TotalSupply
@@ -345,11 +345,11 @@ export class GrapeFinance {
   async getShareStat(): Promise<TokenStat> {
     const {WineRewardPool} = this.contracts;
 
-    const supply = await this.WINE.totalSupply();
+    const supply = await this.YSHARE.totalSupply();
 
-    const priceInBNB = await this.getTokenPriceFromPancakeswap(this.WINE);
+    const priceInBNB = await this.getTokenPriceFromPancakeswap(this.YSHARE);
 
-    const grapeRewardPoolSupply = await this.WINE.balanceOf(WineRewardPool.address);
+    const grapeRewardPoolSupply = await this.YSHARE.balanceOf(WineRewardPool.address);
 
     const tShareCirculatingSupply = supply.sub(grapeRewardPoolSupply);
 
@@ -358,8 +358,8 @@ export class GrapeFinance {
     return {
       tokenInFtm: priceOfSharesInDollars,
       priceInDollars: priceOfSharesInDollars,
-      totalSupply: getDisplayBalance(supply, this.WINE.decimal, 0),
-      circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.WINE.decimal, 0),
+      totalSupply: getDisplayBalance(supply, this.YSHARE.decimal, 0),
+      circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.YSHARE.decimal, 0),
     };
   }
 
@@ -502,7 +502,7 @@ export class GrapeFinance {
       if (!contractName.endsWith('1')) {
         const rewardPerSecond = await poolContract.dibsPerSecond();
 
-        if (depositTokenName === 'WBNB') {
+        if (depositTokenName === 'MNEAR') {
           return rewardPerSecond.mul(720).div(2400).div(24);
         } else if (depositTokenName === 'MTRI') {
           return rewardPerSecond.mul(720).div(2400).div(24);
@@ -510,7 +510,7 @@ export class GrapeFinance {
         return rewardPerSecond.div(12);
       }
 
-      if (depositTokenName === 'WBNB') {
+      if (depositTokenName === 'MNEAR') {
         const rewardPerSecond = await poolContract.epochGrapePerSecond(0);
         return rewardPerSecond.div(100).mul(2);
       } else if (depositTokenName === 'MTRI') {
@@ -533,9 +533,9 @@ export class GrapeFinance {
 
     const rewardPerSecond = await poolContract.winePerSecond();
 
-    if (depositTokenName.startsWith('WINE')) {
+    if (depositTokenName.startsWith('YSHARE')) {
       return rewardPerSecond.mul(7000).div(41000);
-    } else  if (depositTokenName.startsWith('GRAPE-WINE')) {
+    } else  if (depositTokenName.startsWith('GRAPE-YSHARE')) {
       return rewardPerSecond.mul(1500).div(41000);
     } else  if (depositTokenName === 'YEET') {
       return rewardPerSecond.mul(9500).div(41000);
@@ -558,17 +558,17 @@ export class GrapeFinance {
     let tokenPrice;
     const priceOfOneFtmInDollars = await this.getWBNBPriceFromPancakeswap();
 
-    if (tokenName === 'WBNB') {
+    if (tokenName === 'MNEAR') {
       tokenPrice = priceOfOneFtmInDollars;
     } else {
-      if (tokenName === 'GRAPE-MIM-LP') {
+      if (tokenName === 'MTRI-YEET-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.GRAPE, true);
-      } else if (tokenName === 'WINE-MIM-LP') {
-        tokenPrice = await this.getLPTokenPrice(token, this.WINE, false);
-      } else if (tokenName === 'GRAPE-WINE-LP') {
-        tokenPrice = await this.getLPTokenPrice(token, this.WINE, false);
-      } else if (tokenName === 'HSHARE-WINE-LP') {
-        tokenPrice = await this.getLPTokenPrice(token, this.WINE, false);
+      } else if (tokenName === 'YSHARE-MIM-LP') {
+        tokenPrice = await this.getLPTokenPrice(token, this.YSHARE, false);
+      } else if (tokenName === 'GRAPE-YSHARE-LP') {
+        tokenPrice = await this.getLPTokenPrice(token, this.YSHARE, false);
+      } else if (tokenName === 'HSHARE-YSHARE-LP') {
+        tokenPrice = await this.getLPTokenPrice(token, this.YSHARE, false);
       } else if (tokenName === 'MIM') {
         tokenPrice = '1';
       } else if (tokenName === 'WAMP') {
@@ -638,8 +638,8 @@ export class GrapeFinance {
     }
 
     const BSHAREPrice = (await this.getShareStat()).priceInDollars;
-    const boardroomtShareBalanceOf = await this.WINE.balanceOf(this.currentBoardroom().address);
-    const boardroomTVL = Number(getDisplayBalance(boardroomtShareBalanceOf, this.WINE.decimal)) * Number(BSHAREPrice);
+    const boardroomtShareBalanceOf = await this.YSHARE.balanceOf(this.currentBoardroom().address);
+    const boardroomTVL = Number(getDisplayBalance(boardroomtShareBalanceOf, this.YSHARE.decimal)) * Number(BSHAREPrice);
 
     return totalValue + boardroomTVL;
   }
@@ -701,7 +701,7 @@ export class GrapeFinance {
     try {
       if (earnTokenName === 'YEET') {
         return await pool.pendingDIBS(poolId, account);
-      } else if (earnTokenName === 'WINE') {
+      } else if (earnTokenName === 'YSHARE') {
         return await pool.pendingShare(poolId, account);
       } else if (earnTokenName === 'HSHARE') {
         return await pool.pendingToken1(poolId, account);
@@ -778,7 +778,7 @@ export class GrapeFinance {
       //throw new Error('you must unlock the wallet to continue.');
     }
 
-    return this.contracts.Boardroom;
+    return this.contracts.Piggybank;
   }
 
   isOldBoardroomMember(): boolean {
@@ -831,9 +831,9 @@ export class GrapeFinance {
     const ready = await this.provider.ready;
     if (!ready) return;
     //const { chainId } = this.config;
-    const {WBNB} = this.config.externalTokens;
+    const {MNEAR} = this.config.externalTokens;
     const {USDC} = this.config.externalTokens;
-    const wbnb = new TokenPangolin(43114, WBNB[0], WBNB[1], 'WBNB');
+    const wbnb = new TokenPangolin(43114, MNEAR[0], MNEAR[1], 'MNEAR');
     const usdc = new TokenPangolin(43114, USDC[0], USDC[1], 'USDC');
     const token = new TokenPangolin(43114, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
 
@@ -898,11 +898,11 @@ export class GrapeFinance {
   async getWBNBPriceFromPancakeswap(): Promise<string> {
     const ready = await this.provider.ready;
     if (!ready) return;
-    const {WBNB, MIM} = this.externalTokens;
+    const {MNEAR, MIM} = this.externalTokens;
     try {
-      const fusdt_wmim_lp_pair = this.externalTokens['MIM-WBNB-LP'];
-      let mim_amount_BN = await WBNB.balanceOf(fusdt_wmim_lp_pair.address);
-      let mim_amount = Number(getFullDisplayBalance(mim_amount_BN, WBNB.decimal));
+      const fusdt_wmim_lp_pair = this.externalTokens['MIM-MNEAR-LP'];
+      let mim_amount_BN = await MNEAR.balanceOf(fusdt_wmim_lp_pair.address);
+      let mim_amount = Number(getFullDisplayBalance(mim_amount_BN, MNEAR.decimal));
       let fusdt_amount_BN = await MIM.balanceOf(fusdt_wmim_lp_pair.address);
       let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, MIM.decimal));
 
@@ -954,11 +954,11 @@ export class GrapeFinance {
   //===================================================================
 
   async getBoardroomAPR() {
-    const Boardroom = this.currentBoardroom();
+    const Piggybank = this.currentBoardroom();
 
-    const latestSnapshotIndex = await Boardroom.latestSnapshotIndex();
+    const latestSnapshotIndex = await Piggybank.latestSnapshotIndex();
 
-    const lastHistory = await Boardroom.boardroomHistory(latestSnapshotIndex);
+    const lastHistory = await Piggybank.boardroomHistory(latestSnapshotIndex);
 
     const lastRewardsReceived = lastHistory[1];
 
@@ -971,9 +971,9 @@ export class GrapeFinance {
     //Mgod formula
     const amountOfRewardsPerDay = epochRewardsPerShare * Number(GRAPEPrice) * 4;
 
-    const boardroomtShareBalanceOf = await this.WINE.balanceOf(Boardroom.address);
+    const boardroomtShareBalanceOf = await this.YSHARE.balanceOf(Piggybank.address);
 
-    const boardroomTVL = Number(getDisplayBalance(boardroomtShareBalanceOf, this.WINE.decimal)) * Number(BSHAREPrice);
+    const boardroomTVL = Number(getDisplayBalance(boardroomtShareBalanceOf, this.YSHARE.decimal)) * Number(BSHAREPrice);
 
     const realAPR = ((amountOfRewardsPerDay * 100) / boardroomTVL) * 365;
 
@@ -981,51 +981,51 @@ export class GrapeFinance {
   }
 
   /**
-   * Checks if the user is allowed to retrieve their reward from the Boardroom
+   * Checks if the user is allowed to retrieve their reward from the Piggybank
    * @returns true if user can withdraw reward, false if they can't
    */
   async canUserClaimRewardFromBoardroom(): Promise<boolean> {
-    const Boardroom = this.currentBoardroom();
-    return await Boardroom.canClaimReward(this.myAccount);
+    const Piggybank = this.currentBoardroom();
+    return await Piggybank.canClaimReward(this.myAccount);
   }
 
   /**
-   * Checks if the user is allowed to retrieve their reward from the Boardroom
+   * Checks if the user is allowed to retrieve their reward from the Piggybank
    * @returns true if user can withdraw reward, false if they can't
    */
   async canUserUnstakeFromBoardroom(): Promise<boolean> {
-    const Boardroom = this.currentBoardroom();
-    const canWithdraw = await Boardroom.canWithdraw(this.myAccount);
+    const Piggybank = this.currentBoardroom();
+    const canWithdraw = await Piggybank.canWithdraw(this.myAccount);
     const stakedAmount = await this.getStakedSharesOnBoardroom();
-    const notStaked = Number(getDisplayBalance(stakedAmount, this.WINE.decimal)) === 0;
+    const notStaked = Number(getDisplayBalance(stakedAmount, this.YSHARE.decimal)) === 0;
     const result = notStaked ? true : canWithdraw;
     return result;
   }
 
   async timeUntilClaimRewardFromBoardroom(): Promise<BigNumber> {
-    //const Boardroom = this.currentBoardroom();
-    //const mason = await Boardroom.masons(this.myAccount);
-    //console.log(Boardroom);
+    //const Piggybank = this.currentBoardroom();
+    //const mason = await Piggybank.masons(this.myAccount);
+    //console.log(Piggybank);
     return BigNumber.from(0);
   }
 
   async getTotalStakedInBoardroom(): Promise<BigNumber> {
-    const Boardroom = this.currentBoardroom();
-    return await Boardroom.totalSupply();
+    const Piggybank = this.currentBoardroom();
+    return await Piggybank.totalSupply();
   }
 
   async stakeShareToBoardroom(amount: string): Promise<TransactionResponse> {
     if (this.isOldBoardroomMember()) {
       throw new Error("you're using old boardroom. please withdraw and deposit the GSHARE again.");
     }
-    const Boardroom = this.currentBoardroom();
-    return await Boardroom.stake(decimalToBalance(amount));
+    const Piggybank = this.currentBoardroom();
+    return await Piggybank.stake(decimalToBalance(amount));
   }
 
   async getStakedSharesOnBoardroom(): Promise<BigNumber> {
-    const Boardroom = this.currentBoardroom();
+    const Piggybank = this.currentBoardroom();
     if (this.boardroomVersionOfUser === 'v1') {
-      return await Boardroom.getShareOf(this.myAccount);
+      return await Piggybank.getShareOf(this.myAccount);
     }
 
     /* const elements = [
@@ -1049,35 +1049,35 @@ export class GrapeFinance {
 
 */
 
-    return await Boardroom.balanceOf(this.myAccount);
+    return await Piggybank.balanceOf(this.myAccount);
   }
 
   async getEarningsOnBoardroom(): Promise<BigNumber> {
-    const Boardroom = this.currentBoardroom();
+    const Piggybank = this.currentBoardroom();
 
     if (this.boardroomVersionOfUser === 'v1') {
-      return await Boardroom.getCashEarningsOf(this.myAccount);
+      return await Piggybank.getCashEarningsOf(this.myAccount);
     }
 
-    return await Boardroom.earned(this.myAccount);
+    return await Piggybank.earned(this.myAccount);
   }
 
   async withdrawShareFromBoardroom(amount: string): Promise<TransactionResponse> {
-    const Boardroom = this.currentBoardroom();
-    return await Boardroom.withdraw(decimalToBalance(amount));
+    const Piggybank = this.currentBoardroom();
+    return await Piggybank.withdraw(decimalToBalance(amount));
   }
 
   async harvestCashFromBoardroom(): Promise<TransactionResponse> {
-    const Boardroom = this.currentBoardroom();
+    const Piggybank = this.currentBoardroom();
     if (this.boardroomVersionOfUser === 'v1') {
-      return await Boardroom.claimDividends();
+      return await Piggybank.claimDividends();
     }
-    return await Boardroom.claimReward();
+    return await Piggybank.claimReward();
   }
 
   async exitFromBoardroom(): Promise<TransactionResponse> {
-    const Boardroom = this.currentBoardroom();
-    return await Boardroom.exit();
+    const Piggybank = this.currentBoardroom();
+    return await Piggybank.exit();
   }
 
   async getTreasuryNextAllocationTime(): Promise<AllocationTime> {
@@ -1095,14 +1095,14 @@ export class GrapeFinance {
    * @returns Promise<AllocationTime>
    */
   async getUserClaimRewardTime(): Promise<AllocationTime> {
-    const {Boardroom, Treasury} = this.contracts;
-    const nextEpochTimestamp = await Boardroom.nextEpochPoint(); //in unix timestamp
-    const currentEpoch = await Boardroom.epoch();
-    const mason = await Boardroom.members(this.myAccount);
+    const {Piggybank, Treasury} = this.contracts;
+    const nextEpochTimestamp = await Piggybank.nextEpochPoint(); //in unix timestamp
+    const currentEpoch = await Piggybank.epoch();
+    const mason = await Piggybank.members(this.myAccount);
     const startTimeEpoch = mason.epochTimerStart;
     const period = await Treasury.PERIOD();
     const periodInHours = period / 60 / 60; // 6 hours, period is displayed in seconds which is 21600
-    const rewardLockupEpochs = await Boardroom.rewardLockupEpochs();
+    const rewardLockupEpochs = await Piggybank.rewardLockupEpochs();
 
     const targetEpochForClaimUnlock = Number(startTimeEpoch) + Number(rewardLockupEpochs);
 
@@ -1129,14 +1129,14 @@ export class GrapeFinance {
    * @returns Promise<AllocationTime>
    */
   async getUserUnstakeTime(): Promise<AllocationTime> {
-    const {Boardroom, Treasury} = this.contracts;
-    const nextEpochTimestamp = await Boardroom.nextEpochPoint();
-    const currentEpoch = await Boardroom.epoch();
-    const mason = await Boardroom.members(this.myAccount);
+    const {Piggybank, Treasury} = this.contracts;
+    const nextEpochTimestamp = await Piggybank.nextEpochPoint();
+    const currentEpoch = await Piggybank.epoch();
+    const mason = await Piggybank.members(this.myAccount);
     const startTimeEpoch = mason.epochTimerStart;
     const period = await Treasury.PERIOD();
     const PeriodInHours = period / 60 / 60;
-    const withdrawLockupEpochs = await Boardroom.withdrawLockupEpochs();
+    const withdrawLockupEpochs = await Piggybank.withdrawLockupEpochs();
     const fromDate = new Date(Date.now());
     const targetEpochForClaimUnlock = Number(startTimeEpoch) + Number(withdrawLockupEpochs);
     const stakedAmount = await this.getStakedSharesOnBoardroom();
@@ -1166,12 +1166,12 @@ export class GrapeFinance {
         asset = this.GRAPE;
         assetUrl =
           'https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/DSILogo.png';
-      } else if (assetName === 'WINE') {
-        asset = this.WINE;
+      } else if (assetName === 'YSHARE') {
+        asset = this.YSHARE;
         assetUrl =
           'https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/gshare.png';
-      } else if (assetName === 'GBOND') {
-        asset = this.GBOND;
+      } else if (assetName === 'YBOND') {
+        asset = this.YBOND;
         assetUrl =
           'https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/gbond.png';
       }
@@ -1317,7 +1317,7 @@ export class GrapeFinance {
         break;
       }
       case WINE_TICKER: {
-        token = this.WINE;
+        token = this.YSHARE;
         break;
       }
       case MIM_TICKER: {
@@ -1426,7 +1426,7 @@ export class GrapeFinance {
         break;
       }
       case WINE_TICKER: {
-        token = this.WINE;
+        token = this.YSHARE;
         break;
       }
       case MIM_TICKER: {

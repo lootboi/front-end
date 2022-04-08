@@ -76,7 +76,7 @@ const Bond: React.FC = () => {
 
   const bondsPurchasable = useBondsPurchasable();
 
-  //const bondBalance = useTokenBalance(grapeFinance?.GBOND);
+  //const bondBalance = useTokenBalance(grapeFinance?.YBOND);
   //const scalingFactor = useMemo(() => (cashPrice ? Number(cashPrice) : null), [cashPrice]);
 
 

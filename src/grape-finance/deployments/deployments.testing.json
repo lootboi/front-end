@@ -1,5 +1,5 @@
 {
-  "BBond": {
+  "YBond": {
     "address": "0xDA1d9C79240003195d0a67f202efcCCC3F78b994",
     "abi": [
       {
@@ -444,7 +444,7 @@
       }
     ]
   },
-  "Wine": {
+  "YShare": {
     "address": "0xbFBCf4d4e80b978409f9DbF31D662a73d3c2146b",
     "abi": [
       {
@@ -1631,7 +1631,7 @@
       }
     ]
   },
-  "Boardroom": {
+  "Piggybank": {
     "address": "0x4f518029B03AB3f37C90853333ECFf70eb452EA1",
     "abi": [
       {

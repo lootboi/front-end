@@ -18,15 +18,16 @@ const logosBySymbol: {[title: string]: string} = {
   //Real tokens
   //=====================
   GRAPE: grapeLogo,
-  YEET: grapeLogo,
-  MUSDC: mimLogo,
-  WBNB: wavax,
+  YEET: grapeLogo, //native
+  MUSDC: mimLogo, //native
+  MNEAR: wavax, //native
+  YSHARE: wavax, //native
   WINE: wine,
-  GBOND: gbondLogo,
-  MTRI: mimLogo,
+  YBOND: gbondLogo, //native
+  MTRI: mimLogo, //native
   WAMP: wamp,
   HSHARE: wamp,
-  'GRAPE-MIM-LP' : grapeMimLpLogo,
+  'MTRI-YEET-LP' : grapeMimLpLogo,
   'GRAPE-WINE-LP' : grapeWine,
   'WINE-MIM-LP' : wineMimLpLogo,
   'HSHARE-WINE-LP' : hsharewine,
@@ -43,9 +44,9 @@ const TokenSymbol: React.FC<LogoProps> = ({symbol}) => {
   if (!logosBySymbol[symbol]) {
     throw new Error(`Invalid Token Logo symbol: ${symbol}`);
   }
-  if(symbol === 'GRAPE-MIM-LP' || symbol === 'WINE-MIM-LP' || symbol === 'GRAPE-WINE-LP' || symbol === 'HSHARE-WINE-LP'){
+  if(symbol === 'MTRI-YEET-LP' || symbol === 'WINE-MIM-LP' || symbol === 'GRAPE-WINE-LP' || symbol === 'HSHARE-WINE-LP'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={95} height={60} />;
-  }else if(symbol === 'MIM' || symbol === 'WBNB' || symbol === 'WAMP'){
+  }else if(symbol === 'MIM' || symbol === 'MNEAR' || symbol === 'WAMP'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={65} height={65} />;
   }else{
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={55} height={68} />;

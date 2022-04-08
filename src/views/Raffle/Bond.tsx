@@ -149,8 +149,8 @@ const Bond: React.FC = () => {
               action="Enter Raffle"
               fromToken={grapeFinance.GRAPE}
               fromTokenName="GRAPE"
-              toToken={grapeFinance.GBOND}
-              toTokenName="GBOND"
+              toToken={grapeFinance.YBOND}
+              toTokenName="YBOND"
               priceDesc={
                 Date.now() < endTime && Date.now() > startTime
                   ? 'Raffle is open! 1 GRAPE = 1 Entry'

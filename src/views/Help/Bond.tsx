@@ -75,7 +75,7 @@ const Bond: React.FC = () => {
 
   const bondsPurchasable = useBondsPurchasable();
 
-  //const bondBalance = useTokenBalance(grapeFinance?.GBOND);
+  //const bondBalance = useTokenBalance(grapeFinance?.YBOND);
   //const scalingFactor = useMemo(() => (cashPrice ? Number(cashPrice) : null), [cashPrice]);
 
 
@@ -94,7 +94,7 @@ const Bond: React.FC = () => {
                   <h2 style={{textAlign:'center', marginTop: '60px' }}>The Basics of Seigniorage Protocols</h2><br></br>
                   <iframe width="100%" height="550px" src="https://www.youtube.com/embed/videoseries?list=PL_Nr1FoFNB02T0LSnRbFMFJoLTU4yszqJ" title="Grape Finance Videos"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
 
-                 <h2 style={{textAlign:'center', marginTop: '60px'}}>How to stake LP tokens & Wine at Grape Finance</h2><br></br>
+                 <h2 style={{textAlign:'center', marginTop: '60px'}}>How to stake LP tokens & YShare at Grape Finance</h2><br></br>
                   <iframe width="100%" height="550px" src="https://www.youtube.com/embed/xHVqLK_Segw?rel=0" title="Grape Finance Videos"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
                   
               </Grid>

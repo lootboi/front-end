@@ -12,8 +12,8 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usebShareStats from '../../hooks/useWineStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import {YEET as grapeTesting, Wine as bShareTesting} from '../../grape-finance/deployments/deployments.testing.json';
-import {YEET as grapeProd, Wine as bShareProd} from '../../grape-finance/deployments/deployments.mainnet.json';
+import {YEET as grapeTesting, YShare as bShareTesting} from '../../grape-finance/deployments/deployments.testing.json';
+import {YEET as grapeProd, YShare as bShareProd} from '../../grape-finance/deployments/deployments.mainnet.json';
 import {roundAndFormatNumber} from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 import {Box, Button, Card, CardContent, Grid, Paper} from '@material-ui/core';
@@ -362,13 +362,13 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* GBOND */}
+        {/* YBOND */}
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{position: 'relative', paddingBottom: '43px'}}>
               <Button
                 onClick={() => {
-                  grapeFinance.watchAssetInMetamask('GBOND');
+                  grapeFinance.watchAssetInMetamask('YBOND');
                 }}
                 style={{position: 'absolute', top: '10px', right: '10px', border: '1px grey solid'}}
               >
@@ -378,10 +378,10 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="GBOND" />
+                  <TokenSymbol symbol="YBOND" />
                 </CardIcon>
               </Box>
-              <h2 style={{marginBottom: '10px'}}>GBOND</h2>
+              <h2 style={{marginBottom: '10px'}}>YBOND</h2>
 
               <Box>
                 <span style={{fontSize: '30px', color: '#930993'}}>
@@ -403,7 +403,7 @@ const Home = () => {
             <CardContent align="center">
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="GRAPE-MIM-LP" />
+                  <TokenSymbol symbol="MTRI-YEET-LP" />
                 </CardIcon>
               </Box>
               <h2>GRAPE-MIM LP</h2>
