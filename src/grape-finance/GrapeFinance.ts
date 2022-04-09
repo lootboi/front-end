@@ -46,7 +46,7 @@ export class GrapeFinance {
   GRAPE: ERC20;
   YEET: ERC20;
   YSHARE: ERC20; //WINE
-  YBOND: ERC20;
+  YBOND: ERC20; // Was GBOND = DBOND = YBOND
   MNEAR: ERC20; //WBNB
   MTRI: ERC20;
   WAMP: ERC20;
