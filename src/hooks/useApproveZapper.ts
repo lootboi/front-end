@@ -22,7 +22,7 @@ function useApproveZapper(zappingToken: string): [ApprovalState, () => Promise<v
   let token: ERC20;
 
   if (zappingToken === GRAPE_TICKER) token = grapeFinance.GRAPE;
-  else if (zappingToken === WINE_TICKER) token = grapeFinance.WINE;
+  else if (zappingToken === WINE_TICKER) token = grapeFinance.YSHARE;
   else if (zappingToken === MIM_TICKER) token = grapeFinance.externalTokens[MIM_TICKER];
   const pendingApproval = useHasPendingApproval(token.address, ZAPPER_ROUTER_ADDR);
   const currentAllowance = useAllowance(token, ZAPPER_ROUTER_ADDR, pendingApproval);
