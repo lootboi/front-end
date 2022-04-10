@@ -12,7 +12,7 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usebShareStats from '../../hooks/useWineStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import {YEET as grapeTesting, YShare as bShareTesting} from '../../grape-finance/deployments/deployments.testing.json';
+import {YEET as grapeTesting, YShare as bShareTesting} from '../../grape-finance/deployments/deployments.mainnet.json';
 import {YEET as grapeProd, YShare as bShareProd} from '../../grape-finance/deployments/deployments.mainnet.json';
 import {roundAndFormatNumber} from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
