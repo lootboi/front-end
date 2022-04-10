@@ -16,7 +16,7 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
   const grapeBalance = useTokenBalance(grapeFinance.GRAPE);
   const displayGrapeBalance = useMemo(() => getDisplayBalance(grapeBalance), [grapeBalance]);
 
-  const wineBalance = useTokenBalance(grapeFinance.WINE);
+  const wineBalance = useTokenBalance(grapeFinance.YSHARE);
   const displayWineBalance = useMemo(() => getDisplayBalance(wineBalance), [wineBalance]);
 
   const gbondBalance = useTokenBalance(grapeFinance.YBOND);

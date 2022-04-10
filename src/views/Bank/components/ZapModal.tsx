@@ -29,7 +29,7 @@ const ZapModal: React.FC<ZapProps> = ({onConfirm, onDismiss, LPtokenName = '', d
   //const {balance} = useWallet();
 
   const grapeBalance = useTokenBalance(grapeFinance.YEET);
-  const wineBalance = useTokenBalance(grapeFinance.WINE);
+  const wineBalance = useTokenBalance(grapeFinance.YSHARE);
   const mimBalance = useTokenBalance(grapeFinance.MTRI);
 
   let [showZapData, setShowZapData] = useState(false);
