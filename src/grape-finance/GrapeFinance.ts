@@ -343,13 +343,13 @@ export class GrapeFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getShareStat(): Promise<TokenStat> {
-    const {WineRewardPool} = this.contracts;
+    const {YShareRewardPool} = this.contracts;
 
     const supply = await this.YSHARE.totalSupply();
 
     const priceInBNB = await this.getTokenPriceFromPancakeswap(this.YSHARE);
 
-    const grapeRewardPoolSupply = await this.YSHARE.balanceOf(WineRewardPool.address);
+    const grapeRewardPoolSupply = await this.YSHARE.balanceOf(YShareRewardPool.address);
 
     const tShareCirculatingSupply = supply.sub(grapeRewardPoolSupply);
 
@@ -606,7 +606,7 @@ export class GrapeFinance {
    */
   async buyBonds(amount: string | number): Promise<TransactionResponse> {
     const {Treasury} = this.contracts;
-    const treasuryGrapePrice = await Treasury.getGrapePrice();
+    const treasuryGrapePrice = await Treasury.getDibsPrice();
     return await Treasury.buyBonds(decimalToBalance(amount), treasuryGrapePrice);
   }
 

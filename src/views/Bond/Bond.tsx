@@ -84,7 +84,7 @@ const Bond: React.FC = () => {
                 <Grid item xs={12} sm={12} justify="center" style={{ margin: '18px', display: 'flex' }}>
                 <Alert variant="filled" severity="error">
                     <b>
-                      Claiming below 1.1 peg will not receive a redemption bonus, claim wisely!</b>
+                      Claiming below a 4.1:1 peg will not receive a redemption bonus, claim wisely!</b>
               </Alert>
             
               </Grid>
@@ -96,12 +96,12 @@ const Bond: React.FC = () => {
                 <ExchangeCard
                   action="Purchase"
                   fromToken={grapeFinance.GRAPE}
-                  fromTokenName="GRAPE"
+                  fromTokenName="YEET"
                   toToken={grapeFinance.YBOND}
                   toTokenName="YBOND"
                   priceDesc={
                     !isBondPurchasable
-                      ? 'GRAPE is over peg'
+                      ? 'Bonds are not available for purchase'
                       : getDisplayBalance(bondsPurchasable, 18, 4) + ' YBOND available for purchase'
                   }
                   onExchange={handleBuyBonds}
@@ -110,7 +110,7 @@ const Bond: React.FC = () => {
               </StyledCardWrapper>
               <StyledStatsWrapper>
                 <ExchangeStat
-                  tokenName="1 GRAPE"
+                  tokenName="1 YEET"
                   description="Last-Hour TWAP Price"
                   //price={Number(grapeStat?.tokenInFtm).toFixed(4) || '-'}
                  price={bondScale || '-'}
@@ -118,8 +118,8 @@ const Bond: React.FC = () => {
                 />
                 <Spacer size="md" />
                 <ExchangeStat
-                  tokenName="1 GRAPE"
-                  description="Current Price: (GRAPE)^2"
+                  tokenName="1 YEET"
+                  description="Current Price: (YEET)^2"
                   price={Number(bondStat?.tokenInFtm).toFixed(2) || '-'}
                 />
               </StyledStatsWrapper>
@@ -129,7 +129,7 @@ const Bond: React.FC = () => {
                   fromToken={grapeFinance.YBOND}
                   fromTokenName="YBOND"
                   toToken={grapeFinance.GRAPE}
-                  toTokenName="GRAPE"
+                  toTokenName="YEET"
                   priceDesc={`${getDisplayBalance(bondBalance)} YBOND Available in wallet`}
                   onExchange={handleRedeemBonds}
                  

@@ -205,8 +205,8 @@ const LPTokenHelpText: React.FC<{bank: BankEntity}> = ({bank}) => {
   let uniswapUrl: string;
   let vaultUrl: string;
   let exchange: string;
-  if (bank.depositTokenName.includes('GRAPE-MIM')) {
-    pairName = 'GRAPE-MIM pair';
+  if (bank.depositTokenName.includes('MTRI-YEET-LP')) {
+    pairName = 'YEET-TRI LP';
     uniswapUrl =
       'https://traderjoexyz.com/pool/0x130966628846bfd36ff31a822705796e8cb8c18d/0x5541d83efad1f281571b343977648b75d95cdac2';
     vaultUrl = '#';

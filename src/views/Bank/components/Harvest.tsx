@@ -30,7 +30,7 @@ const Harvest: React.FC<HarvestProps> = ({bank}) => {
   const grapeStats = useGrapeStats();
   const tShareStats = useShareStats();
   const tokenName = bank.earnTokenName === 'GRAPE' ? 'GRAPE' : 'WINE';
-  const tokenStats = bank.earnTokenName === 'WINE' ? tShareStats : grapeStats;
+  const tokenStats = bank.earnTokenName === 'YSHARE' ? tShareStats : grapeStats;
 
   const tokenPriceInDollars = useMemo(
     () => (tokenStats ? Number(tokenStats.priceInDollars).toFixed(2) : null),
@@ -47,7 +47,7 @@ const Harvest: React.FC<HarvestProps> = ({bank}) => {
             <CardIcon>
               <TokenSymbol symbol={bank.earnTokenName} />
             </CardIcon>
-            <Typography style={{textTransform: 'uppercase', color: '#930993'}}>  
+            <Typography style={{textTransform: 'uppercase', color: '#CC6666'}}>  
             <Value value={getDisplayBalance(earnings)} />
             </Typography>
              <Label text={`≈ $${Number(earnedInDollars).toLocaleString('en-US')}`} /> 

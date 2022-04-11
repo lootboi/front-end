@@ -63,7 +63,7 @@ h6 {
   color: #fff !important;
 }
 .MuiButton-containedPrimary{
-  background: #930993 !important;
+  background: #FFCC66 !important;
 }
 
 .MuiButton-containedPrimary:hover{
@@ -91,19 +91,18 @@ code {
 }
 
 .navLink:hover {
-  color: #930993 !important;
+  color: #FFCC66 !important;
 }
 
 .shinyButton {
   margin-top: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: #930993 !important;
+  background-color: #FFCC66 !important;
   border-radius: 15px;
   font-size: 1rem !important;
   padding-left: 5px;
-  color: #fff !important;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+  color: #000 !important;
 }
 
 .shinyButtonDisabled {
@@ -113,7 +112,7 @@ code {
 }
 
 .shinyButton:hover {
-  background-color: #72046d !important;
+  background-color: #CC6666 !important;
   color: #fff !important;
 }
 
@@ -132,7 +131,7 @@ code {
   border-radius: 15px;
   font-size: 1rem !important;
   padding-left: 5px;
-  background-color: #930993 !important;
+  background-color: #CC6666 !important;
   color: #fff !important;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
@@ -155,7 +154,7 @@ code {
 }
 
 .shinyButtonSecondary:hover {
-  background-color: #72046d !important;
+  background-color: #FFCC66 !important;
   color: #fff !important;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }

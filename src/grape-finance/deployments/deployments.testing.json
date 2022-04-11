@@ -1145,7 +1145,7 @@
       }
     ]
   },
-  "WineRewardPool": {
+  "YShareRewardPool": {
     "address": "0x66dB49c22B250CC9557189F4f2767a73Efb88FAc",
     "abi": [
       {
