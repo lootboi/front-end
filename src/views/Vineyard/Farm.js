@@ -13,7 +13,7 @@ import FarmCard from './FarmCard';
 import {createGlobalStyle} from 'styled-components';
 
 import useBanks from '../../hooks/useBanks';
-import LaunchCountdown from '../../components/LaunchCountdown';
+// import LaunchCountdown from '../../components/LaunchCountdown';
 import HomeImage from '../../assets/img/background.png';
 const BackgroundImage = createGlobalStyle`
   body {

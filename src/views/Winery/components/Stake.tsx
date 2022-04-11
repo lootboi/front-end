@@ -32,13 +32,13 @@ import useWithdrawFromBoardroom from '../../../hooks/useWithdrawFromBoardroom';
 
 const Stake: React.FC = () => {
   const grapeFinance = useGrapeFinance();
-  const [approveStatus, approve] = useApprove(grapeFinance.WINE, grapeFinance.contracts.Piggybank.address);
+  const [approveStatus, approve] = useApprove(grapeFinance.YSHARE, grapeFinance.contracts.Piggybank.address);
 
-  const tokenBalance = useTokenBalance(grapeFinance.WINE);
+  const tokenBalance = useTokenBalance(grapeFinance.YSHARE);
   const stakedBalance = useStakedBalanceOnBoardroom();
   const {from, to} = useUnstakeTimerBoardroom();
 
-  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('WINE', grapeFinance.WINE);
+  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('YSHARE', grapeFinance.YSHARE);
   
   const tokenPriceInDollars = useMemo(
     () =>
@@ -60,7 +60,7 @@ const Stake: React.FC = () => {
         onStake(value);
         onDismissDeposit();
       }}
-      tokenName={'WINE'}
+      tokenName={'YSHARE'}
     />,
   );
 
@@ -71,7 +71,7 @@ const Stake: React.FC = () => {
         onWithdraw(value);
         onDismissWithdraw();
       }}
-      tokenName={'WINE'}
+      tokenName={'YSHARE'}
     />,
   );
   
@@ -81,17 +81,17 @@ const Stake: React.FC = () => {
     
     <Box>
       <Card>
-        <CardContent>
+        <CardContent style={{backgroundColor: '#33666675', textAlign: 'center'}}>
           <StyledCardContentInner>
             <StyledCardHeader>
               <CardIcon>
-                <TokenSymbol symbol="WINE" />
+                <TokenSymbol symbol="YSHARE" />
               </CardIcon>
-              <Typography style={{textTransform: 'uppercase', color: '#930993'}}>  
+              <Typography style={{textTransform: 'uppercase', color: '#cc6666'}}>  
               <Value value={getDisplayBalance(stakedBalance)} />
               </Typography>
               <Label text={`≈ $${Number(tokenPriceInDollars).toLocaleString('en-US')}`} color="#322f32" />
-              <Label text={'WINE Staked'} color="#322f32" />
+              <Label text={'YSHARE Staked'} color="#322f32" />
             </StyledCardHeader>
             <StyledCardActions>
               {approveStatus !== ApprovalState.APPROVED ? (
@@ -102,7 +102,7 @@ const Stake: React.FC = () => {
                 style={{ marginTop: '20px' }}
                 onClick={approve}
               >
-                  Approve WINE
+                  Approve GSHARE
                 </Button>
               ) : (
                 <>

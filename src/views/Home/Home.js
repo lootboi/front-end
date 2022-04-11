@@ -7,26 +7,26 @@ import TokenSymbol from '../../components/TokenSymbol';
 import useGrapeStats from '../../hooks/useGrapeStats';
 import useLpStats from '../../hooks/useLpStats';
 import useLpStatsBTC from '../../hooks/useLpStatsBTC';
-import useModal from '../../hooks/useModal';
-import useZap from '../../hooks/useZap';
+// import useModal from '../../hooks/useModal';
+// import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usebShareStats from '../../hooks/useWineStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import {YEET as grapeTesting, YShare as bShareTesting} from '../../grape-finance/deployments/deployments.testing.json';
+import {YEET as grapeTesting, YShare as bShareTesting} from '../../grape-finance/deployments/deployments.mainnet.json';
 import {YEET as grapeProd, YShare as bShareProd} from '../../grape-finance/deployments/deployments.mainnet.json';
 import {roundAndFormatNumber} from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 import {Box, Button, Card, CardContent, Grid, Paper} from '@material-ui/core';
-import ZapModal from '../Bank/components/ZapModal';
-import {Alert} from '@material-ui/lab';
-import useBank from '../../hooks/useBank';
+// import ZapModal from '../Bank/components/ZapModal';
+// import {Alert} from '@material-ui/lab';
+// import useBank from '../../hooks/useBank';
 import {makeStyles} from '@material-ui/core/styles';
 import useGrapeFinance from '../../hooks/useGrapeFinance';
-import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
-import wamp from '../../assets/img/WAMP.png';
+// import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
+// import wamp from '../../assets/img/WAMP.png';
 import DeepImage from '../../assets/img/DSILogo.png'; ///change 
 import HomeImage from '../../assets/img/background.png';  //change
-import useStatsForPool from '../../hooks/useStatsForPool';
+// import useStatsForPool from '../../hooks/useStatsForPool';
 import useTotalStakedOnBoardroom from '../../hooks/useTotalStakedOnBoardroom';
 import {getDisplayBalance} from '../../utils/formatBalance';
 
@@ -57,8 +57,8 @@ const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   const grapemimLpStats = useLpStatsBTC('GRAPE-MIM-LP');
-  const bSharemimLpStats = useLpStats('WINE-MIM-LP');
-  const newPair = useLpStats('GRAPE-WINE-LP');
+  const bSharemimLpStats = useLpStats('YEET-MIM-LP');
+  const newPair = useLpStats('GRAPE-YEET-LP');
   const grapeStats = useGrapeStats();
   const bShareStats = usebShareStats();
   const tBondStats = useBondStats();
@@ -132,7 +132,7 @@ const Home = () => {
 
   /*
   const grapeLpZap = useZap({ depositTokenName: 'GRAPE-MIM-LP' });
-  const wineLpZap = useZap({ depositTokenName: 'WINE-MIM-LP' });
+  const wineLpZap = useZap({ depositTokenName: 'YEET-MIM-LP' });
 
   const [onPresentGrapeZap, onDissmissGrapeZap] = useModal(
     <ZapModal
@@ -154,7 +154,7 @@ const Home = () => {
         wineLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissWineZap();
       }}
-      tokenName={'WINE-MIM-LP'}
+      tokenName={'YEET-MIM-LP'}
     />,
   );
 */
@@ -169,12 +169,12 @@ const Home = () => {
           sm={4}
           style={{display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden'}}
         >
-          <img src={DeepImage} style={{maxHeight: '240px'}} />
+          <img src={DeepImage} style={{maxHeight: '300px'}} />
         </Grid>
         {/* Explanation text */}
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={4} sm={8}>
           <Paper>
-            <Box bgcolor='#33666675' p={4} style={{ textAlign: 'center'}}>
+            <Box bgcolor='#33666675' p={2} style={{ textAlign: 'center'}}>
               <h2>Earn Galactic Sized Yields at Deep Space Investments</h2>
 
               <p style={{fontSize: '17px'}}>
@@ -182,7 +182,7 @@ const Home = () => {
               </p>
               <p style={{fontSize: '17px'}}>
                 $GLXY is an algorithmic stable coin designed to maintain a 1:4 peg to TRI.
-                {/*Stake your LPs in the Vineyard to earn WINE rewards. Then stake your earned WINE in the
+                {/*Stake your LPs in the Vineyard to earn YEET rewards. Then stake your earned YEET in the
                 Winery to earn more GRAPE!*/}
               </p>
               <p>
@@ -230,8 +230,8 @@ const Home = () => {
           </div>
 
           <Card>
-            <CardContent align="center">
-              <h2>Total Value Locked</h2>
+            <CardContent style={{ backgroundColor: '#33666675', textAlign: 'center'}}>
+              <h2>TVL</h2>
               <CountUp style={{fontSize: '30px'}} end={TVL} separator="," prefix="$" />
             </CardContent>
           </Card>
@@ -239,10 +239,8 @@ const Home = () => {
 
         {/* Wallet */}
         <Grid item xs={12} sm={8}>
-          <Card style={{height: '100%'}}>
-            <CardContent align="center" style={{marginTop: '2%'}}>
-              <Box p={4} style={{textAlign: 'center', paddingTop: '0px'}}>
-              </Box>
+          <Card style={{backgroundColor: '51, 102, 102, 0.75', height: '100%'}}>
+          <CardContent style={{ backgroundColor: '#33666675', textAlign: 'center'}}>
               {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
               <Button href="/gravitywells" className="shinyButton" style={{margin: '10px'}}>
                 Vineyard
@@ -264,7 +262,7 @@ const Home = () => {
                 className={'shinyButton ' + classes.button}
                 style={{marginLeft: '10px'}}
               >
-                Buy WINE
+                Buy YEET
               </Button>
 
               <Button
@@ -281,8 +279,9 @@ const Home = () => {
                 className={'shinyButton ' + classes.button}
                 style={{marginLeft: '10px'}}
               >
-                WINE Chart
+                YEET Chart
               </Button>
+              <h2> What course will you chart?</h2>
             </CardContent>
           </Card>
         </Grid>
@@ -290,15 +289,15 @@ const Home = () => {
         {/* GRAPE */}
         <Grid item xs={12} sm={4}>
           <Card>
-            <CardContent align="center" style={{position: 'relative'}}>
+            <CardContent align="center" style={{ backgroundColor:'#33666675', position: 'relative'}}>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="GRAPE" />
+                  <TokenSymbol symbol="YEET" />
                 </CardIcon>
               </Box>
               <Button
                 onClick={() => {
-                  grapeFinance.watchAssetInMetamask('GRAPE');
+                  grapeFinance.watchAssetInMetamask('YEET');
                 }}
                 style={{position: 'absolute', top: '10px', right: '10px', border: '1px grey solid'}}
               >
@@ -306,10 +305,10 @@ const Home = () => {
                 <b>+</b>&nbsp;&nbsp;
                 <img alt="metamask fox" style={{width: '20px'}} src={MetamaskFox} />
               </Button>
-              <h2 style={{marginBottom: '10px'}}>GRAPE</h2>
+              <h2 style={{marginBottom: '10px'}}>YEET</h2>
 
               <Box>
-                <span style={{fontSize: '30px', color: '#930993'}}>
+                <span style={{fontSize: '30px', color: '#CC6666'}}>
                   ${grapePriceInAVAX ? grapePriceInAVAX : '-.----'}{' '}
                 </span>
               </Box>
@@ -324,13 +323,13 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* WINE */}
+        {/* YEET */}
         <Grid item xs={12} sm={4}>
           <Card>
-            <CardContent align="center" style={{position: 'relative'}}>
+            <CardContent align="center" style={{ backgroundColor: '#33666675', position: 'relative'}}>
               <Button
                 onClick={() => {
-                  grapeFinance.watchAssetInMetamask('WINE');
+                  grapeFinance.watchAssetInMetamask('YSHARE');
                 }}
                 style={{position: 'absolute', top: '10px', right: '10px', border: '1px grey solid'}}
               >
@@ -340,13 +339,13 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="WINE" />
+                  <TokenSymbol symbol="GRAPE" />
                 </CardIcon>
               </Box>
-              <h2 style={{marginBottom: '10px'}}>WINE</h2>
+              <h2 style={{marginBottom: '10px'}}>YSHARE</h2>
 
               <Box>
-                <span style={{fontSize: '30px', color: '#930993'}}>
+                <span style={{fontSize: '30px', color: '#CC6666'}}>
                   ${bSharePriceInDollars ? bSharePriceInDollars : '-.--'}
                 </span>
               </Box>
@@ -365,7 +364,7 @@ const Home = () => {
         {/* YBOND */}
         <Grid item xs={12} sm={4}>
           <Card>
-            <CardContent align="center" style={{position: 'relative', paddingBottom: '43px'}}>
+            <CardContent align="center" style={{backgroundColor: '#33666675', position: 'relative', paddingBottom: '43px'}}>
               <Button
                 onClick={() => {
                   grapeFinance.watchAssetInMetamask('YBOND');
@@ -384,7 +383,7 @@ const Home = () => {
               <h2 style={{marginBottom: '10px'}}>YBOND</h2>
 
               <Box>
-                <span style={{fontSize: '30px', color: '#930993'}}>
+                <span style={{fontSize: '30px', color: '#CC6666'}}>
                   $ {tBondPriceInDollars ? tBondPriceInDollars : '-.--'}
                 </span>
               </Box>
@@ -400,7 +399,7 @@ const Home = () => {
 
         <Grid item xs={12} sm={4}>
           <Card>
-            <CardContent align="center">
+            <CardContent align="center" style={{backgroundColor: '#33666675'}}>
               <Box mt={2}>
                 <CardIcon>
                   <TokenSymbol symbol="MTRI-YEET-LP" />
@@ -418,7 +417,7 @@ const Home = () => {
               </Box>
 
               <Box mt={2}>
-                <span style={{fontSize: '26px', color: '#930993'}}>
+                <span style={{fontSize: '26px', color: '#CC6666'}}>
                   {grapeLPStats?.tokenAmount ? grapeLPStats?.tokenAmount : '-.--'} GRAPE /{' '}
                   {grapeLPStats?.mimAmount ? grapeLPStats?.mimAmount : '-.--'} MIM
                 </span>
@@ -434,13 +433,13 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} sm={4}>
           <Card>
-            <CardContent align="center">
+            <CardContent align="center" style={{backgroundColor: '#33666675'}}>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="WINE-MIM-LP" style="width:105px;" />
+                  <TokenSymbol symbol="GRAPE" style="width:105px;" />
                 </CardIcon>
               </Box>
-              <h2>WINE-MIM LP</h2>
+              <h2>YEET-MIM LP</h2>
 
               <Box mt={2} style={{marginTop: '0px'}}>
                 {/* <Button onClick={onPresentWineZap} className="shinyButtonSecondary">
@@ -451,8 +450,8 @@ const Home = () => {
                 </Button>
               </Box>
               <Box mt={2}>
-                <span style={{fontSize: '26px', color: '#930993'}}>
-                  {wineLPStats?.tokenAmount ? wineLPStats?.tokenAmount : '-.--'} WINE /{' '}
+                <span style={{fontSize: '26px', color: '#CC6666'}}>
+                  {wineLPStats?.tokenAmount ? wineLPStats?.tokenAmount : '-.--'} YEET /{' '}
                   {wineLPStats?.mimAmount ? wineLPStats?.mimAmount : '-.--'} MIM
                 </span>
               </Box>
@@ -467,13 +466,13 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} sm={4}>
           <Card>
-            <CardContent align="center">
+            <CardContent align="center" style={{backgroundColor: '#33666675'}}>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="GRAPE-WINE-LP" style="width:105px;" />
+                  <TokenSymbol symbol="GRAPE" style="width:105px;" />
                 </CardIcon>
               </Box>
-              <h2>GRAPE-WINE LP</h2>
+              <h2>GRAPE-YEET LP</h2>
 
               <Box mt={2} style={{marginTop: '0px'}}>
                 {/* <Button onClick={onPresentWineZap} className="shinyButtonSecondary">
@@ -484,9 +483,9 @@ const Home = () => {
                 </Button>
               </Box>
               <Box mt={2}>
-                <span style={{fontSize: '26px', color: '#930993'}}>
+                <span style={{fontSize: '26px', color: '#CC6666'}}>
                   {newPairLPStats?.tokenAmount ? newPairLPStats?.tokenAmount : '-.--'} GRAPE /{' '}
-                  {newPairLPStats?.mimAmount ? newPairLPStats?.mimAmount : '-.--'} WINE
+                  {newPairLPStats?.mimAmount ? newPairLPStats?.mimAmount : '-.--'} YEET
                 </span>
               </Box>
               <Box>${newPairLPStats?.priceOfOne ? newPairLPStats.priceOfOne : '-.--'}</Box>

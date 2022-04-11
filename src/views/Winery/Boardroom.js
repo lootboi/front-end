@@ -27,7 +27,7 @@ import useClaimRewardCheck from '../../hooks/boardroom/useClaimRewardCheck';
 import useWithdrawCheck from '../../hooks/boardroom/useWithdrawCheck';
 import ProgressCountdown from './components/ProgressCountdown';
 import {createGlobalStyle} from 'styled-components';
-import LaunchCountdown from '../../components/LaunchCountdown';
+// import LaunchCountdown from '../../components/LaunchCountdown';
 import HomeImage from '../../assets/img/background.png';
 import usebShareStats from '../../hooks/useWineStats';
 
@@ -92,58 +92,58 @@ const Boardroom = () => {
       {!!account ? (
         <>
  
-            <h2 style={{ fontSize: '80px', textAlign:'center' }}>Winery</h2>
+            <h2 style={{ fontSize: '80px', textAlign:'center' }}>Constellations</h2>
 
            <Alert variant="filled" severity="info" >               
-   The constellations does not print Grape when below 1.01 TWAP, staking here below 1.01 TWAP will not generate rewards. Staked WINE can only be withdrawn every 4 epochs (24hrs) & rewards claimed every 2 epochs (12hrs). Staking or claiming resets this timer. <a target={"_blank"} href='https://yieldwolf.finance/avalanche/grape-boardroom/99'>Auto compound your YShare at Yield Wolf Here</a>
+   The Constellations do not print YEET when below 1.01 TWAP, staking here below 1.01 TWAP will not generate rewards. Staked YSHARE can only be withdrawn every 4 epochs (24hrs) & rewards claimed every 2 epochs (12hrs). Staking or claiming resets this timer. <a target={"_blank"} href='https://yieldwolf.finance/avalanche/grape-boardroom/99'>Auto compound your YShare at Yield Wolf Here</a>
       </Alert> 
           <Box mt={5}>
 
             <Grid container justify="center" spacing={3}>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card className={classes.gridItem}>
-                  <CardContent style={{textAlign: 'center'}}>
-                    <Typography style={{textTransform: 'uppercase', color: '#930993'}}>Next Epoch</Typography>
+                  <CardContent style={{backgroundColor: '#33666675', textAlign: 'center'}}>
+                    <Typography style={{textTransform: 'uppercase', color: '#FFCC66'}}>Next Epoch</Typography>
                     <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{textTransform: 'uppercase', color: '#930993'}}>Epoch / TWAP</Typography>
+                  <CardContent style={{backgroundColor: '#33666675', textAlign: 'center'}}>
+                    <Typography style={{textTransform: 'uppercase', color: '#FFCC66'}}>Epoch / TWAP</Typography>
                     <Typography>{Number(currentEpoch)} / {scalingFactor} MIM</Typography>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{textTransform: 'uppercase', color: '#930993'}}>APR / Daily</Typography>
+                  <CardContent style={{backgroundColor: '#33666675', textAlign: 'center'}}>
+                    <Typography style={{textTransform: 'uppercase', color: '#FFCC66'}}>APR / Daily</Typography>
                     <Typography>{boardroomAPR.toFixed(0)}% / {(boardroomAPR/365).toFixed(2)}%</Typography>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2}>
                 <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{textTransform: 'uppercase', color: '#930993'}}>Staked / %</Typography>
+                  <CardContent style={{backgroundColor: '#33666675', textAlign: 'center'}}>
+                    <Typography style={{textTransform: 'uppercase', color: '#FFCC66'}}>Staked / %</Typography>
                     <Typography>{stake} / {percentageStaked}%</Typography>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2}>
                 <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{textTransform: 'uppercase', color: '#930993'}}>TVL</Typography>
+                  <CardContent style={{backgroundColor: '#33666675', textAlign: 'center'}}>
+                    <Typography style={{textTransform: 'uppercase', color: '#FFCC66'}}>TVL</Typography>
                     <Typography>${tvl ? (Number((Number(tvl).toFixed(0)))).toLocaleString('en-US') : '-.--'}</Typography>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2}>
                 <Card className={classes.gridItem}>
-                  <CardContent align="center">
-                    <Typography style={{textTransform: 'uppercase', color: '#930993'}}>Est Reward/Day</Typography>
+                  <CardContent style={{backgroundColor: '#33666675', textAlign: 'center'}}>
+                    <Typography style={{textTransform: 'uppercase', color: '#FFCC66'}}>Est Reward/Day</Typography>
                     <Typography>~${rewards ? Number(rewards).toLocaleString('en-US') : '0.00'}</Typography>
                   </CardContent>
                 </Card>
