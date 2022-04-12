@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo} from 'react'; 
 import Page from '../../components/Page';
 import {createGlobalStyle} from 'styled-components';
 import CountUp from 'react-countup';
@@ -21,7 +21,7 @@ import ZapModal from '../Bank/components/ZapModal';
 import {Alert} from '@material-ui/lab';
 import useBank from '../../hooks/useBank';
 import {makeStyles} from '@material-ui/core/styles';
-import useGrapeFinance from '../../hooks/useGrapeFinance';
+import useGrapeFinance from '../../hooks/useGrapeFinance'; //core
 import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
 import wamp from '../../assets/img/WAMP.png';
 import DeepImage from '../../assets/img/DSILogo.png'; ///change 
