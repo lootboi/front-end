@@ -254,7 +254,7 @@ const Home = () => {
                 style={{margin: '10px'}}
                 className={'shinyButton ' + classes.button}
               >
-                Buy GRAPE
+                Buy YEET
               </Button>
               <Button
                 target="_blank"
@@ -262,7 +262,7 @@ const Home = () => {
                 className={'shinyButton ' + classes.button}
                 style={{marginLeft: '10px'}}
               >
-                Buy YEET
+                Buy YSHARE
               </Button>
 
               <Button
