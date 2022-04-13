@@ -208,7 +208,7 @@ const Home = () => {
                 >
                  <b>  Docs & Disclaimer</b>
                 </a>{' '}
-                before joining!
+                before aping!
               </p>
             </Box>
           </Paper>
